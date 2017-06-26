@@ -9,10 +9,11 @@ import sys
 import scipy
 import matplotlib.pyplot as plt
 #import pandas as pd
+
 import statsmodels.formula.api as sm
 #matplotlib.style.use('ggplot')
 
-%matplotlib inline
+#%matplotlib inline
 tile     = "G159m21"
 band     = "S"
 datapath = "data/raw/"
@@ -44,6 +45,8 @@ def fits_display_test(image_file):
     # Save image for publication
     fig.save("figures/"+image_file+'.pdf')
 
+    #plt.show()
+
 
 import montage_wrapper as montage
 
@@ -63,3 +66,7 @@ in_image = datapath+tile+"_L_intensity.fits"
 out_image = "ngc1333_L.fits"
 
 montage.wrappers.reproject(in_image, out_image, header=hdrpath)
+
+fits_display_test(out_image)
+
+fits_display_test(in_image)
