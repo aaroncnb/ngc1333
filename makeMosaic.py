@@ -28,7 +28,7 @@ def fits_display_test(image_file):
     fig.show_colorscale()
 
     # Add contours
-    fig.show_contour(image_file, cmap='jet', levels=np.linspace(0.0, 1.0, 10))
+    #fig.show_contour(image_file, cmap='jet', levels=np.linspace(0.0, 1.0, 10))
 
     # Make ticks white
     fig.ticks.set_color('white')
