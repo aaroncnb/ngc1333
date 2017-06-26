@@ -1,5 +1,5 @@
 import aplpy
-import atpy
+#import atpy
 import astropy
 import matplotlib
 #from IPython.external import mathjax; mathjax.install_mathjax()
@@ -12,10 +12,11 @@ import matplotlib.pyplot as plt
 import statsmodels.formula.api as sm
 #matplotlib.style.use('ggplot')
 
-#%matplotlib inline
-tile = "G000m03"
-band = "L"
+%matplotlib inline
+tile     = "G159m21"
+band     = "S"
 datapath = "data/raw/"
+hdrpath  = "ngc1333.hdr"
 
 
 def fits_display_test(image_file):
@@ -41,4 +42,24 @@ def fits_display_test(image_file):
     fig.add_colorbar()
 
     # Save image for publication
-    #fig.save('.png')
+    fig.save("figures/"+image_file+'.pdf')
+
+
+import montage_wrapper as montage
+
+# Prepare head file as ???.hdr
+in_image = datapath+tile+"_"+band+"_intensity.fits"
+out_image = "ngc1333_S.fits"
+
+montage.wrappers.reproject(in_image, out_image, header=hdrpath)
+
+fits_display_test(out_image)
+
+fits_display_test(in_image)
+
+
+
+in_image = datapath+tile+"_L_intensity.fits"
+out_image = "ngc1333_L.fits"
+
+montage.wrappers.reproject(in_image, out_image, header=hdrpath)
