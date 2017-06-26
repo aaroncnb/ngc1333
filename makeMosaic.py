@@ -20,9 +20,9 @@ datapath = "data/raw/"
 hdrpath  = "ngc1333.hdr"
 
 
-def fits_display_test(image_file):
+def fits_display_test(image_file, image_path):
     # Create a new figure
-    fig = aplpy.FITSFigure(image_file)
+    fig = aplpy.FITSFigure(image_path+image_file)
 
     # Show the colorscale
     fig.show_colorscale()
@@ -51,22 +51,22 @@ def fits_display_test(image_file):
 import montage_wrapper as montage
 
 # Prepare head file as ???.hdr
-in_image = datapath+tile+"_"+band+"_intensity.fits"
+in_image = tile+"_"+band+"_intensity.fits"
 out_image = "ngc1333_S.fits"
 
-montage.wrappers.reproject(in_image, out_image, header=hdrpath)
+montage.wrappers.reproject(datapath+in_image, out_image, header=hdrpath)
 
-fits_display_test(out_image)
+fits_display_test(out_image,"./")
 
-fits_display_test(in_image)
+fits_display_test(in_image,datapath)
 
 
 
-in_image = datapath+tile+"_L_intensity.fits"
+in_image = tile+"_L_intensity.fits"
 out_image = "ngc1333_L.fits"
 
-montage.wrappers.reproject(in_image, out_image, header=hdrpath)
+montage.wrappers.reproject(datapath+in_image, out_image, header=hdrpath)
 
-fits_display_test(out_image)
+fits_display_test(out_image,"./")
 
-fits_display_test(in_image)
+fits_display_test(in_image, datapath)
